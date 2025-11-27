@@ -88,6 +88,12 @@ The frontend is a single HTML file with vanilla JavaScript — no build step, no
 3. Inference runs in JavaScript, computing all 6 ticks
 4. Canvas renders the 3D visualization with manual depth sorting
 
+### The one-shot version
+
+We've included `ctm_visualizer_oneshot.html` in the repo — this is the very first version of the visualizer, generated in a single prompt to Claude. Included here in order to demonstrate how much can be achieved "one shot"
+
+Comparing it to `index.html` shows how the project evolved through iteration: adding the contribution chart, refining explanations, improving the UI, and fixing edge cases. We left it in as a record of where we started
+
 ## Credits
 
 - **CTM architecture**: [Continuous Thought Machines](https://arxiv.org/abs/2505.05522) by Luke Darlow, Ciaran Regan, Sebastian Risi, Jeffrey Seely, and Llion Jones at Sakana AI
