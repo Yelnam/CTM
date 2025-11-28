@@ -1996,7 +1996,13 @@
                     if (e.target === overlay) hideExplanation();
                 });
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') hideExplanation();
+                    if (e.key === 'Escape' || e.key === 'Enter') {
+                        // Only close if overlay is actually visible
+                        if (overlay.classList.contains('visible')) {
+                            hideExplanation();
+                            e.preventDefault(); // Prevent Enter from triggering other actions
+                        }
+                    }
                 });
             }
 
