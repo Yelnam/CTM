@@ -444,9 +444,17 @@
             left: 50%;
             transform: translateX(-50%);
             width: 300px;
+            height: 120px; /* Fixed height to prevent expansion bug */
             background: var(--bg-panel);
             border-radius: 12px;
             padding: 12px 16px;
+            overflow: hidden; /* Prevent any content overflow */
+        }
+
+        #confidenceChart {
+            width: 100%;
+            height: 80px !important; /* Fixed height - prevents feedback loop */
+            display: block;
         }
 
         /* Right Panel - Detail View */
@@ -2418,15 +2426,18 @@
             updateConfidenceChart() {
                 const canvas = document.getElementById('confidenceChart');
                 const ctx = canvas.getContext('2d');
-                const rect = canvas.getBoundingClientRect();
                 const dpr = window.devicePixelRatio || 1;
                 
-                canvas.width = rect.width * dpr;
-                canvas.height = rect.height * dpr;
+                // Use fixed dimensions to prevent feedback loop on some browsers
+                const width = 268; // Container width (300) minus padding (16*2) = 268
+                const height = 80; // Fixed height
+                
+                canvas.width = width * dpr;
+                canvas.height = height * dpr;
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
                 ctx.scale(dpr, dpr);
                 
-                const width = rect.width;
-                const height = rect.height;
                 const paddingLeft = 15;
                 const paddingRight = 50;
                 const paddingY = 20;
