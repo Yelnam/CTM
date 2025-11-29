@@ -416,6 +416,12 @@
             border-radius: 8px;
             padding: 8px 16px;
             z-index: 10;
+            width: auto;
+            height: auto;
+            max-width: 300px;
+            max-height: 50px;
+            display: inline-block;
+            overflow: hidden;
         }
 
         .network-title-box span {
@@ -1299,10 +1305,10 @@
             <div class="control-label">Step through ticks</div>
         </div>
 
-        <div class="control-group">
+        <!-- <div class="control-group">
             <div class="control-key" id="keySpace" style="min-width: 64px;">Space</div>
             <div class="control-label">Play / Pause</div>
-        </div>
+        </div> -->
 
         <div class="control-group">
             <div class="control-key" id="keyNew">N</div>
@@ -1317,7 +1323,7 @@
                 <div class="control-key preset-key" data-preset="4">4</div>
                 <div class="control-key preset-key" data-preset="5">5</div>
             </div>
-            <div class="control-label">Run random seq. (intvl 1-5)</div>
+            <div class="control-label">Run rand. seq.</div>
         </div>
 
         <div class="control-group">
@@ -1812,7 +1818,7 @@
                 
                 document.getElementById('keyLeft').addEventListener('click', () => this.stepTick(-1));
                 document.getElementById('keyRight').addEventListener('click', () => this.stepTick(1));
-                document.getElementById('keySpace').addEventListener('click', () => this.togglePlay());
+                // document.getElementById('keySpace').addEventListener('click', () => this.togglePlay());
                 document.getElementById('keyPredict').addEventListener('click', () => this.jumpToPrediction());
                 document.getElementById('keyNew').addEventListener('click', () => this.startNewSequence());
                 
@@ -2343,25 +2349,25 @@
                 input0.select();
             }
 
-            togglePlay() {
-                // Edge case: if no inference has run yet, trigger the first Run
-                if (!this.inferenceResult) {
-                    this.executeRun();
-                    return;
-                }
+            // togglePlay() {
+            //     // Edge case: if no inference has run yet, trigger the first Run
+            //     if (!this.inferenceResult) {
+            //         this.executeRun();
+            //         return;
+            //     }
                 
-                this.isPlaying = !this.isPlaying;
-                document.getElementById('keySpace').classList.toggle('active', this.isPlaying);
+            //     this.isPlaying = !this.isPlaying;
+            //     document.getElementById('keySpace').classList.toggle('active', this.isPlaying);
                 
-                if (this.isPlaying) {
-                    this.playInterval = setInterval(() => {
-                        this.currentTick = (this.currentTick + 1) % this.maxTicks;
-                        this.setTick(this.currentTick);
-                    }, 800);
-                } else {
-                    clearInterval(this.playInterval);
-                }
-            }
+            //     if (this.isPlaying) {
+            //         this.playInterval = setInterval(() => {
+            //             this.currentTick = (this.currentTick + 1) % this.maxTicks;
+            //             this.setTick(this.currentTick);
+            //         }, 800);
+            //     } else {
+            //         clearInterval(this.playInterval);
+            //     }
+            // }
 
             updateUI() {
                 if (!this.inferenceResult) return;
